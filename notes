@@ -1,0 +1,15 @@
+./gradlew build -x test
+eval $(minikube docker-env)
+docker build --build-arg JAR_FILE=build/libs/zk-curator-demo-0.0.1-SNAPSHOT.jar -t manishmmulani/zk-curator-primary-seeker .
+create deployment.yaml 
+kubectl apply -f deployment.yaml 
+
+Notes : 
+in deployment.yaml - ensure to add 'imagePullPolicy: Never' so it doesn't try to pull image from dockerhub but use local image 
+
+kubectl get pods 
+
+kubectl describe pod 'pod_name'  -> helps in troubleshooting as to what the error is 
+
+
+ssh -i $(minikube ssh-key) -R 3181:localhost:2181 docker@$(minikube ip)

@@ -1,0 +1,9 @@
+kind: Endpoints
+apiVersion: v1
+metadata:
+ name: my-zk-service
+subsets:
+ - addresses:
+     - ip: 172.17.0.1
+   ports:
+     - port: 2181

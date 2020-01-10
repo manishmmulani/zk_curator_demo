@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: primary-seeker-app
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: primary-seeker-app
+  template:
+    metadata:
+      labels:
+        app: primary-seeker-app
+    spec:
+      containers:
+      - name: primary-seeker-app
+        image: manishmmulani/zk-curator-primary-seeker
+        imagePullPolicy: Never
+        env:
+          - name: ZK_HOST_PORT
+            value: 192.168.39.12:22222
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "100m"
